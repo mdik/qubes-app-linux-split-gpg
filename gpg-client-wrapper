@@ -130,7 +130,7 @@ while (( $# )); do
             --force-v3-sigs|\
             --force-v4-certs|\
             --no-sk-comments|\
-            --use-agent)
+            -se-agent)
                 shift
                 ;;
             # Ignored options
@@ -222,7 +222,15 @@ while (( $# )); do
                 options+=("-u" "${1:12}")
                 shift
                 ;;
+            --default-key=*)
+                options+=("-u" "${1:12}")
+                shift
+                ;;
             --sign-with)
+                if (( $# >= 2 )); then
+                    options+=("-u" "$2")
+                    shift 2
+            --default-key)
                 if (( $# >= 2 )); then
                     options+=("-u" "$2")
                     shift 2
